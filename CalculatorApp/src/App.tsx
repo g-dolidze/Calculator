@@ -39,42 +39,45 @@ function reducer(state: any, { type, payload }: StateType) {
       }
 
     case ACTIONS.CHOOSE_OPERATION:
-      if (state.operation === "+") {
-        return {
-          prev: Number(state.prev) + Number(state.current),
-          current: "",
-          operation: "+",
-        };
-      }
-      if (state.operation === "-") {
-        return {
-          prev: Number(state.prev) - Number(state.current),
-          current: "",
-          operation: "-",
-        };
-      }
-      if (state.operation === "/") {
-        return {
-          prev: Number(state.prev) / Number(state.current),
-          current: "",
-          operation: "/",
-        };
-      }
-      if (state.operation === "X") {
-        return {
-          prev: Number(state.prev) * Number(state.current),
-          current: "",
-          operation: "X",
-        };
-      } else {
-        return {
-          ...state,
-          prev: state.current,
-          current: "",
-          operation: payload,
-        };
-      }
+      if (state.prev !== Number) {
+        state.prev, 0;
 
+        if (state.operation === "+") {
+          return {
+            prev: Number(state.prev) + Number(state.current),
+            current: "",
+            operation: "+",
+          };
+        }
+        if (state.operation === "-") {
+          return {
+            prev: Number(state.prev) - Number(state.current),
+            current: "",
+            operation: "-",
+          };
+        }
+        if (state.operation === "/") {
+          return {
+            prev: Number(state.prev) / Number(state.current),
+            current: "",
+            operation: "/",
+          };
+        }
+        if (state.operation === "X") {
+          return {
+            prev: Number(state.prev) * Number(state.current),
+            current: "",
+            operation: "X",
+          };
+        } else {
+          return {
+            ...state,
+            prev: state.current,
+            current: "",
+            operation: payload,
+          };
+        }
+      }
     case ACTIONS.EVALUATE:
       if (state.operation === "+") {
         return {
